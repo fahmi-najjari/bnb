@@ -11,23 +11,20 @@ const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
 const userTheme = localStorage.getItem('theme') as ThemeStore['theme'];
 
 const useThemeStore = create<ThemeStore>()((set) => ({
-  theme: userTheme || 'dark' || systemTheme,
+  theme: userTheme || systemTheme || 'light',
   setTheme: ({ theme }: { theme: ThemeStore['theme'] }) => {
-    const body = document.body;
-
-    if (theme === 'dark') {
-      if (!body.hasAttribute('class')) {
-        body.setAttribute('class', 'dark');
-      }
-    } else {
-      if (body.hasAttribute('class')) {
-        body.removeAttribute('class');
-      }
-    }
-
-    set({
-      theme,
-    });
+    const root = document.documentElement;
+    
+    // Remove both classes first
+    root.classList.remove('light', 'dark');
+    
+    // Add the new theme class
+    root.classList.add(theme);
+    
+    // Update localStorage
+    localStorage.setItem('theme', theme);
+    
+    set({ theme });
   },
 }));
 

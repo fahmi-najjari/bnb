@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.join(__dirname, 'src'),
+      'mapbox-gl': 'maplibre-gl',
     },
   },
   plugins: [
@@ -17,4 +18,7 @@ export default defineConfig({
       },
     }),
   ],
+  optimizeDeps: {
+    include: ['react-map-gl'],  // Add this for better performance
+  },
 });

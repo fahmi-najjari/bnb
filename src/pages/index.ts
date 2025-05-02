@@ -6,4 +6,6 @@ const Users = lazy(() => import('@/pages/users'));
 
 const Todos = lazy(() => import('@/pages/todos'));
 
-export { Home, Users, Todos };
+const AuthTestPage = lazy(() => import('@/pages/auth'));
+
+export { Home, Users, Todos, AuthTestPage };

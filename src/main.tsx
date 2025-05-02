@@ -7,13 +7,14 @@ import QueryProvider from './provider/query-provider.tsx';
 import LayoutConfigProvider from './provider/theme-config-provider.tsx';
 import Routes from './routes/index.tsx';
 import { ToasterConfig } from '@/components';
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <LayoutConfigProvider>
       <QueryProvider>
         <ToasterConfig />
         <Routes />
+        <ReactQueryDevtools />
       </QueryProvider>
     </LayoutConfigProvider>
   </React.StrictMode>,
